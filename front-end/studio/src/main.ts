@@ -28,14 +28,14 @@ if (environment.production) {
     }).catch(err => console.log(err));
 } else {
     const keycloak = Keycloak();
-    keycloak.init({onLoad: 'login-required'}).then(function (authenticated) {
-        if (authenticated) {
+//     keycloak.init({onLoad: 'login-required'}).then(function (authenticated) {
+//         if (authenticated) {
             window['keycloak'] = keycloak;
             platformBrowserDynamic().bootstrapModule(AppModule).then(() => {
                 printBanner("Development");
             }).catch(err => console.log(err));
-        }
-    }).catch(function () {
-        alert('Failed to initialize authentication subsystem.');
-    });
+//         }
+//     }).catch(function () {
+//         alert('Failed to initialize authentication subsystem.');
+//     });
 }
