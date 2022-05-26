@@ -43,24 +43,15 @@ export class KeycloakAuthenticationService extends IAuthenticationService {
         let w: any = window;
         this.keycloak = w["keycloak"];
 
-        // console.info("Token: %s", JSON.stringify(this.keycloak.tokenParsed, null, 2));
-        // console.info("ID Token: %s", JSON.stringify(this.keycloak.idTokenParsed, null, 2));
-        // console.info("Access Token: %s", this.keycloak.token);
-
         let user: User = new User();
-        user.name = "Sandeep"
-        user.login = "Sandeep"
-        user.email = "Sandeep@ss.com"
+        user.name = "name1"
+        user.login = "s@s.com"
+        user.email = "s@ss.com"
         user.roles = ["admin"]
 
         this._authenticated.send(true);
         this._user = user;
 
-        // Periodically refresh the token
-        // TODO run this outsize NgZone using zone.runOutsideAngular() : https://angular.io/api/core/NgZone
-//         setInterval(() => {
-//             this.keycloak.updateToken(30);
-//         }, 30000);
     }
 
     /**
@@ -116,7 +107,7 @@ export class KeycloakAuthenticationService extends IAuthenticationService {
      * 
      */
     public getAuthenticationSecret(): string {
-        return "this.keycloak.token"
+        return "wwww"
     }
 
 }

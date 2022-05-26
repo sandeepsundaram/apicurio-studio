@@ -4,7 +4,7 @@ body {
 }
 
 .pf-c-page__header {
-  height: 75px;
+  min-height: 1px;
 }
 
 #api-page-body .modal-header {

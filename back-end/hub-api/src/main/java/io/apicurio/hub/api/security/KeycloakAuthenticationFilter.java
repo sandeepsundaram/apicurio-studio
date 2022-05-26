@@ -59,28 +59,29 @@ public class KeycloakAuthenticationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        HttpServletRequest httpReq = (HttpServletRequest) request;
-        KeycloakSecurityContext session = getSession(httpReq);
-        if (session != null) {
-            // Fabricate a User object from information in the access token and store it in the security context.
-            AccessToken token = session.getToken();
-            if (token != null) {
-                User user = new User();
-                user.setEmail(token.getEmail());
-                user.setLogin(token.getPreferredUsername());
-                user.setName(token.getName());
-                if (token.getRealmAccess() == null || token.getRealmAccess().getRoles() == null) {
-                    user.setRoles(Collections.emptyList());
-                } else {
-                    user.setRoles(token.getRealmAccess().getRoles().stream()
-                            .map(StudioRole::forName)
-                            .filter(Objects::nonNull)
-                            .collect(Collectors.toUnmodifiableList()));
-                }
-                ((SecurityContext) security).setUser(user);
-                ((SecurityContext) security).setToken(session.getTokenString());
-            }
-        }
+//        HttpServletRequest httpReq = (HttpServletRequest) request;
+//        KeycloakSecurityContext session = getSession(httpReq);
+//        if (session != null) {
+//            // Fabricate a User object from information in the access token and store it in the security context.
+//            AccessToken token = session.getToken();
+//            if (token != null) {
+//                User user = new User();
+//                user.setEmail(token.getEmail());
+//                user.setLogin(token.getPreferredUsername());
+//                user.setName(token.getName());
+//                if (token.getRealmAccess() == null || token.getRealmAccess().getRoles() == null) {
+//                    user.setRoles(Collections.emptyList());
+//                } else {
+//                    user.setRoles(token.getRealmAccess().getRoles().stream()
+//                            .map(StudioRole::forName)
+//                            .filter(Objects::nonNull)
+//                            .collect(Collectors.toUnmodifiableList()));
+//                }
+//                ((SecurityContext) security).setUser(user);
+//                ((SecurityContext) security).setToken(session.getTokenString());
+//            }
+//        }
+        System.out.println("filter1");
         chain.doFilter(request, response);
     }
 

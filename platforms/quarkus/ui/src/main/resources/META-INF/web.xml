@@ -113,30 +113,5 @@
     <servlet-name>PreviewServlet</servlet-name>
     <url-pattern>/preview</url-pattern>
   </servlet-mapping>
-  <security-constraint>
-    <web-resource-collection>
-      <web-resource-name>All</web-resource-name>
-      <url-pattern>/index.html</url-pattern>
-      <url-pattern>/token</url-pattern>
-      <url-pattern>/logout</url-pattern>
-      <url-pattern>/config.js</url-pattern>
-      <url-pattern>/dashboard</url-pattern>
-      <url-pattern>/settings/*</url-pattern>
-      <url-pattern>/apis/*</url-pattern>
-      <url-pattern>/templates</url-pattern>
-      <url-pattern>/download</url-pattern>
-      <url-pattern>/preview</url-pattern>
-    </web-resource-collection>
-    <auth-constraint>
-      <role-name>*</role-name>
-    </auth-constraint>
-  </security-constraint>
 
-  <login-config>
-    <auth-method>KEYCLOAK</auth-method>
-  </login-config>
-
-  <security-role>
-    <role-name>*</role-name>
-  </security-role>
 </web-app>

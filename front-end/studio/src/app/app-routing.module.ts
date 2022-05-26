@@ -55,31 +55,31 @@ const routes: Routes = [
         component: TemplatesPageComponent,
         canActivate: [AuthenticationCanActivateGuard]
     },
-    {
-        path: "settings",
-        component: SettingsPageComponent,
-        canActivate: [AuthenticationCanActivateGuard]
-    },
-    {
-        path: "settings/profile",
-        component: ProfilePageComponent,
-        canActivate: [AuthenticationCanActivateGuard]
-    },
-    {
-        path: "settings/accounts",
-        component: LinkedAccountsPageComponent,
-        canActivate: [AuthenticationCanActivateGuard]
-    },
-    {
-        path: "settings/accounts/:accountType/created",
-        component: CreatedLinkedAccountPageComponent,
-        canActivate: [AuthenticationCanActivateGuard]
-    },
-    {
-        path: "settings/validation",
-        component: ValidationPageComponent,
-        canActivate: [AuthenticationCanActivateGuard]
-    },
+//     {
+//         path: "settings",
+//         component: SettingsPageComponent,
+//         canActivate: [AuthenticationCanActivateGuard]
+//     },
+//     {
+//         path: "settings/profile",
+//         component: ProfilePageComponent,
+//         canActivate: [AuthenticationCanActivateGuard]
+//     },
+//     {
+//         path: "settings/accounts",
+//         component: LinkedAccountsPageComponent,
+//         canActivate: [AuthenticationCanActivateGuard]
+//     },
+//     {
+//         path: "settings/accounts/:accountType/created",
+//         component: CreatedLinkedAccountPageComponent,
+//         canActivate: [AuthenticationCanActivateGuard]
+//     },
+//     {
+//         path: "settings/validation",
+//         component: ValidationPageComponent,
+//         canActivate: [AuthenticationCanActivateGuard]
+//     },
     {
         path: "apis",
         component: ApisPageComponent,

@@ -25,11 +25,11 @@ let DEFAULT_CONFIG: any = {
     },
     apis: {
         type: "hub",
-        hubUrl: "http://localhost:8080/api-hub",
-        editingUrl: "http://localhost:8080/api-editing",
+        hubUrl: "http://localhost:8080",
+        editingUrl: "ws://localhost:9090",
     },
     ui: {
-        uiUrl: "http://localhost:8080/studio/",
+        uiUrl: "http://localhost:8080/",
         channelNameValidation: "([^\\x00-\\x20\\x7f\"'%<>\\\\^`{|}]|%[0-9A-Fa-f]{2}|{[+#./;?&=,!@|]?((\\w|%[0-9A-Fa-f]{2})(\\.?(\\w|%[0-9A-Fa-f]{2}))*(:[1-9]\\d{0,3}|\\*)?)(,((\\w|%[0-9A-Fa-f]{2})(\\.?(\\w|%[0-9A-Fa-f]{2}))*(:[1-9]\\d{0,3}|\\*)?))*})*",
     },
     features: {
