@@ -260,9 +260,9 @@ export class ApiEditorPageComponent extends AbstractPageComponent implements Aft
      */
     protected pageTitle(): string {
         if (this.apiDefinition.name) {
-            return "Apicurio Studio - API Editor :: " + this.apiDefinition.name;
+            return "DAC Innovation  Hub - API Editor :: " + this.apiDefinition.name;
         } else {
-            return "Apicurio Studio - API Editor";
+            return "DAC Innovation  Hub - API Editor";
         }
     }
 
@@ -291,7 +291,7 @@ export class ApiEditorPageComponent extends AbstractPageComponent implements Aft
 
     /**
      * Fetches external content on behalf of the editor.  This implementation should handle both
-     * external http(s) content as well as internal Apicurio Studio content.
+     * external http(s) content as well as internal DAC Innovation  Hub content.
      * @param externalRef
      */
     public fetchExternalContent = (externalRef: string): Promise<any> => {

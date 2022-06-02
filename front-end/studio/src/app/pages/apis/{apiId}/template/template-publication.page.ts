@@ -58,7 +58,7 @@ export class TemplatePublicationPageComponent extends AbstractPageComponent {
      * The page title.
      */
     protected pageTitle(): string {
-        return "Apicurio Studio - Create Template";
+        return "DAC Innovation  Hub - Create Template";
     }
 
     /**

@@ -54,42 +54,42 @@ public class QuarkusAuthenticationFilter implements Filter {
     @Override public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-        HttpServletRequest httpReq = (HttpServletRequest) request;
-        JWTCallerPrincipal principal = (JWTCallerPrincipal) httpReq.getUserPrincipal();
-
-        if (principal != null) {
-            HttpSession httpSession = httpReq.getSession();
-
-            // Set the token as a string in the request (as an attribute) for later use.
-            StudioConfigAuth auth = new StudioConfigAuth();
-            auth.setType(StudioConfigAuthType.token);
-            auth.setLogoutUrl(((HttpServletRequest) request).getContextPath() + "/logout");
-            auth.setToken(principal.getRawToken());
-            //TODO carnalca unsafe cast from long to int
-            auth.setTokenRefreshPeriod((int) expirationToRefreshPeriod(principal.getExpirationTime()));
-            httpSession.setAttribute(RequestAttributeKeys.AUTH_KEY, auth);
-
-            // Fabricate a User object from information in the access token and store it in the request.
-            User user = new User();
-            user.setEmail(principal.getClaim("email"));
-            user.setLogin(principal.getClaim("preferred_username"));
-            user.setName(principal.getClaim("name"));
-            if (!principal.containsClaim("realm_access") || principal.<JsonObject>getClaim("realm_access").isNull("roles")) {
-                user.setRoles(Collections.emptyList());
-            } else {
-                user.setRoles(
-                        principal.<JsonObject>getClaim("realm_access")
-                                .getJsonArray("roles").stream()
-                                .map(JsonString.class::cast)
-                                .map(JsonString::getString)
-                                .map(StudioRole::forName)
-                                .filter(Objects::nonNull)
-                                .collect(Collectors.toUnmodifiableList()));
-            }
-            httpSession.setAttribute(RequestAttributeKeys.USER_KEY, user);
+//        HttpServletRequest httpReq = (HttpServletRequest) request;
+//        JWTCallerPrincipal principal = (JWTCallerPrincipal) httpReq.getUserPrincipal();
+//
+//        if (principal != null) {
+//            HttpSession httpSession = httpReq.getSession();
+//
+//            // Set the token as a string in the request (as an attribute) for later use.
+//            StudioConfigAuth auth = new StudioConfigAuth();
+//            auth.setType(StudioConfigAuthType.token);
+//            auth.setLogoutUrl(((HttpServletRequest) request).getContextPath() + "/logout");
+//            auth.setToken(principal.getRawToken());
+//            //TODO carnalca unsafe cast from long to int
+//            auth.setTokenRefreshPeriod((int) expirationToRefreshPeriod(principal.getExpirationTime()));
+//            httpSession.setAttribute(RequestAttributeKeys.AUTH_KEY, auth);
+//
+//            // Fabricate a User object from information in the access token and store it in the request.
+//            User user = new User();
+//            user.setEmail(principal.getClaim("email"));
+//            user.setLogin(principal.getClaim("preferred_username"));
+//            user.setName(principal.getClaim("name"));
+//            if (!principal.containsClaim("realm_access") || principal.<JsonObject>getClaim("realm_access").isNull("roles")) {
+//                user.setRoles(Collections.emptyList());
+//            } else {
+//                user.setRoles(
+//                        principal.<JsonObject>getClaim("realm_access")
+//                                .getJsonArray("roles").stream()
+//                                .map(JsonString.class::cast)
+//                                .map(JsonString::getString)
+//                                .map(StudioRole::forName)
+//                                .filter(Objects::nonNull)
+//                                .collect(Collectors.toUnmodifiableList()));
+//            }
+//            httpSession.setAttribute(RequestAttributeKeys.USER_KEY, user);
 
             chain.doFilter(request, response);
-        }
+
     }
 
     /**

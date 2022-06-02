@@ -63,9 +63,9 @@ export class ApiTextEditorPageComponent extends AbstractPageComponent implements
      */
     protected pageTitle(): string {
         if (this.apiDefinition.name) {
-            return "Apicurio Studio - API Editor :: " + this.apiDefinition.name;
+            return "DAC Innovation  Hub - API Editor :: " + this.apiDefinition.name;
         } else {
-            return "Apicurio Studio - API Editor";
+            return "DAC Innovation  Hub - API Editor";
         }
     }
 

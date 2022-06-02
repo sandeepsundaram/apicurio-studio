@@ -25,7 +25,7 @@ import {ApiDesignChange} from "../models/api-design-change.model";
 import {User} from "../models/user.model";
 
 /**
- * An implementation of the Linked Accounts service that uses the Apicurio Studio back-end (Hub API) service
+ * An implementation of the Linked Accounts service that uses the DAC Innovation  Hub back-end (Hub API) service
  * to store and retrieve relevant information for the user.
  */
 @Injectable()

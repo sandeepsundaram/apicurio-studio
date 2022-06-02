@@ -1,4 +1,4 @@
-# Apicurio Studio Public API
+# DAC Innovation  Hub Public API
 
 ## What is it?
 This project is an application, written in Typescript, to edit OpenAPI definitions.

@@ -43,7 +43,7 @@ export class NotFoundPageComponent extends AbstractPageComponent {
      * 
      */
     protected pageTitle(): string {
-        return "Apicurio Studio - Not Found";
+        return "DAC Innovation  Hub - Not Found";
     }
 
     /**

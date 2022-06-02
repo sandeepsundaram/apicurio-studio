@@ -47,7 +47,7 @@ export class ProfilePageComponent extends AbstractPageComponent {
      * 
      */
     protected pageTitle(): string {
-        return "Apicurio Studio - Settings - Profile";
+        return "DAC Innovation  Hub - Settings - Profile";
     }
 
     public loadAsyncPageData(): void {

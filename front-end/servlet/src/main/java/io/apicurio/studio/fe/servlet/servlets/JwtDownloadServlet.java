@@ -40,11 +40,9 @@ public class JwtDownloadServlet extends DownloadServlet {
 
             JWTCallerPrincipal principal = (JWTCallerPrincipal) request.getUserPrincipal();
 
-            if (principal != null) {
-                proxyUrlWithToken(principal.getRawToken(), url, response);
-            } else {
-                throw new IllegalStateException("No user present at request");
-            }
+
+            proxyUrlWithToken("principal.getRawToken()", url, response);
+
         } catch (IllegalStateException e) {
             logger.error("Error proxying URL: " + url, e);
             try {

@@ -369,7 +369,7 @@ export class ApiEditingSession implements IApiEditingSession {
 
 
 /**
- * An implementation of the APIs service that uses the Apicurio Studio back-end (Hub API) service
+ * An implementation of the APIs service that uses the DAC Innovation  Hub back-end (Hub API) service
  * to store and retrieve relevant information for the user.
  */
 @Injectable()

@@ -54,7 +54,7 @@ export class CreatedLinkedAccountPageComponent extends AbstractPageComponent {
      * 
      */
     protected pageTitle(): string {
-        return "Apicurio Studio - Account Linking";
+        return "DAC Innovation  Hub - Account Linking";
     }
 
     /**

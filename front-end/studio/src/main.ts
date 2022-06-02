@@ -6,19 +6,7 @@ import {environment} from './environments/environment';
 import * as Keycloak from 'keycloak-js';
 
 function printBanner(env) {
-    console.log(`%c ___________________________________________________
-  Welcome to     _                 _
-     /\\         (_)               (_)
-    /  \\   _ __  _  ___ _   _ _ __ _  ___
-   / /\\ \\ | '_ \\| |/ __| | | | '__| |/ _ \\
-  / ____ \\| |_) | | (__| |_| | |  | | (_) |
- /_/    \\_\\ .__/|_|\\___|\\__,_|_|  |_|\\___/
-          | |
-          |_|
-          
- Mode: %s
- ___________________________________________________
-`, "font-family:monospace", env);
+
 }
 
 if (environment.production) {
