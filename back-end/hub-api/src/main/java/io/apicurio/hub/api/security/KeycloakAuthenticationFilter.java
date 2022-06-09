@@ -81,7 +81,6 @@ public class KeycloakAuthenticationFilter implements Filter {
 //                ((SecurityContext) security).setToken(session.getTokenString());
 //            }
 //        }
-        System.out.println("filter1");
         chain.doFilter(request, response);
     }
 

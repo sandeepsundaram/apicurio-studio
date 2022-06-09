@@ -80,7 +80,6 @@ public class QuarkusAuthenticationFilter implements Filter {
 //            ((SecurityContext) security).setUser(user);
 //            ((SecurityContext) security).setToken(principal.getRawToken());
 
-            System.out.println("filter2");
             chain.doFilter(request, response);
 
     }
