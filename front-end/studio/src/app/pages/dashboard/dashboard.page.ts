@@ -69,7 +69,7 @@ export class DashboardPageComponent extends AbstractPageComponent {
      * 
      */
     protected pageTitle(): string {
-        return "DAC Innovation  Hub - Dashboard";
+        return "DAC API Studio - Dashboard";
     }
 
     /**

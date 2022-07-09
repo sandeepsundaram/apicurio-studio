@@ -127,9 +127,8 @@ export class ImportApiFormComponent {
 
     public importTypeOptions(): DropDownOption[] {
         return [
-            new Value("Import From URL", "from-url"),
-            new Value("Import From Source Control", "from-scs"),
-            new Value("Import From File/Clipboard", "from-text")
+            new Value("Import From URL", "from-url"),            
+            new Value("Import From Clipboard", "from-text")
         ];
     }
 
@@ -141,7 +140,7 @@ export class ImportApiFormComponent {
 
     public urlPlaceholder(): string {
         if (this.importType === "from-url") {
-            return "https://gist.githubusercontent.com/Tim/94445d/raw/5dba00/oai-import.json";
+            return "https://gist.githubusercontent.com/oai-import.json";
         } else {
             return "https://github.com/ORG/REPO/blob/master/path/to/open-api-doc.json";
         }

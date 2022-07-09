@@ -1,6 +1,7 @@
 <div *ngIf="!editorOpen">
     <div id="api-breadcrumb-bar">
         <breadcrumbs>
+            <li breadcrumb label="Dashboard" [route]="[ '/dashboard' ]"></li>
             <li breadcrumb label="Settings" [route]="[ '/settings' ]"></li>
             <li breadcrumb label="Validation" class="active"></li>
         </breadcrumbs>

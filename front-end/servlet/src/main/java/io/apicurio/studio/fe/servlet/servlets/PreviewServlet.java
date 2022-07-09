@@ -67,11 +67,12 @@ public class PreviewServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String apiId = req.getParameter("aid");
+        String token = req.getParameter("session");
         String rid = req.getParameter("rid");
         
         logger.debug("Rendering document preview for API: {}", apiId);
 
-        String specURL = "download?type=api&format=json&dereference=true&id=" + apiId;
+        String specURL = "download?type=api&format=json&dereference=true&id=" + apiId+"&session="+token;
         logger.debug("Spec URL: {}", specURL);
         
         String content;

@@ -65,7 +65,7 @@ export class CreateApiPageComponent extends AbstractPageComponent {
      * The page title.
      */
     protected pageTitle(): string {
-        return "DAC Innovation  Hub - Create API";
+        return "DAC API Studio - Create API";
     }
 
     /**

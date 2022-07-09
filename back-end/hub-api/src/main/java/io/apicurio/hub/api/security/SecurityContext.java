@@ -33,28 +33,13 @@ public class SecurityContext implements ISecurityContext {
     /**
      * Constructor.
      */
-    public SecurityContext() {
-        User u = new User();
-        u.setLogin("s@s.com");
-        u.setId(111);
-        u.setName("name1");
-        u.setEmail("s@ss.com");
-
-        this.user = u;
-        this.token = "wwwww";
-    }
+    public SecurityContext() {}
     
     /**
      * @param user
      */
     public void setUser(User user) {
-        User u = new User();
-        u.setLogin("s@s.com");
-        u.setId(111);
-        u.setName("name1");
-        u.setEmail("s@ss.com");
-
-        this.user = u;
+        this.user = user;
     }
     
     /**
@@ -76,7 +61,7 @@ public class SecurityContext implements ISecurityContext {
      * @param token the token to set
      */
     public void setToken(String token) {
-        this.token = "wwwww";
+        this.token = token;
     }
 
 }

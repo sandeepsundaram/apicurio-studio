@@ -47,7 +47,7 @@ export class ProfilePageComponent extends AbstractPageComponent {
      * 
      */
     protected pageTitle(): string {
-        return "DAC Innovation  Hub - Settings - Profile";
+        return "DAC API Studio - Settings - Profile";
     }
 
     public loadAsyncPageData(): void {

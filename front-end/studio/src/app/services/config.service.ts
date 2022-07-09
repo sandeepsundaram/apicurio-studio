@@ -21,7 +21,8 @@ import {User} from "../models/user.model";
 let DEFAULT_CONFIG: any = {
     mode: "dev",
     auth: {
-        type: "keycloakjs"
+        type: "token",
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6InNhbmRlZXAuc3VuZGFyYW1AZ21haWwuY29tIiwiaWQiOjExMjIzMzQ0LCJuYW1lIjoiU2FuZGVlcCBTdW5kYXJhbSIsImVtYWlsIjoic2FuZGVlcC5zdW5kYXJhbUBnbWFpbC5jb20iLCJyb2xlcyI6WyJhcGljdXJpb19hZG1pbiJdfQ.d2fg0eB0flgmZlJ22pumX63aiXsqvnZNorq_wSw5ElY"
     },
     apis: {
         type: "hub",

@@ -1,5 +1,6 @@
 <div id="api-breadcrumb-bar">
     <breadcrumbs>
+        <li breadcrumb label="Dashboard" [route]="[ '/dashboard' ]"></li>
         <li breadcrumb label="Settings" [route]="[ '/settings' ]"></li>
         <li breadcrumb label="Linked Accounts" class="active"></li>
     </breadcrumbs>
@@ -49,7 +50,7 @@
                 </div>
                 <div class="card-pf-body">
                     <p>
-                        You've successfully authorized DAC Innovation  Hub with
+                        You've successfully authorized DAC API Studio with
                         <span *ngIf="isGitHub()"><a href="https://www.github.com">GitHub</a></span>
                         <span *ngIf="isGitLab()"><a href="https://www.gitlab.com">GitLab</a></span>
                         <span *ngIf="isBitbucket()"><a href="https://www.bitbucket.org">Bitbucket</a></span>

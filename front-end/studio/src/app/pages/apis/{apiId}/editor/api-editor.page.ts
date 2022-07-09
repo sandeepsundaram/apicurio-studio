@@ -260,9 +260,9 @@ export class ApiEditorPageComponent extends AbstractPageComponent implements Aft
      */
     protected pageTitle(): string {
         if (this.apiDefinition.name) {
-            return "DAC Innovation  Hub - API Editor :: " + this.apiDefinition.name;
+            return "DAC API Studio - API Editor :: " + this.apiDefinition.name;
         } else {
-            return "DAC Innovation  Hub - API Editor";
+            return "DAC API Studio - API Editor";
         }
     }
 
@@ -291,7 +291,7 @@ export class ApiEditorPageComponent extends AbstractPageComponent implements Aft
 
     /**
      * Fetches external content on behalf of the editor.  This implementation should handle both
-     * external http(s) content as well as internal DAC Innovation  Hub content.
+     * external http(s) content as well as internal DAC API Studio content.
      * @param externalRef
      */
     public fetchExternalContent = (externalRef: string): Promise<any> => {
@@ -701,7 +701,7 @@ export class ApiEditorPageComponent extends AbstractPageComponent implements Aft
      * will be reloaded whenever a change is made.
      */
     public openLivePreview(): void {
-        let previewUrl = this.config.uiUrl() + "preview?aid=" + this.apiDefinition.id;
+        let previewUrl = this.config.uiUrl() + "preview?session=" + this.config.authToken() + "&aid=" + this.apiDefinition.id;
         this.previewWindow = window.open(previewUrl, "_apicurio_preview_" + this.apiDefinition.id);
     }
 

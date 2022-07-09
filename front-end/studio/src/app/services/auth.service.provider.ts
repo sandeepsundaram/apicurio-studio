@@ -21,6 +21,7 @@ import {TokenAuthenticationService} from "./auth-token.service";
 import {OIDCDirectGrantAuthenticationService} from "./auth-oidc.service";
 import {KeycloakAuthenticationService} from "./auth-keycloak.service";
 import {HttpClient} from "@angular/common/http";
+import { JWTService } from "./jwt.service";
 
 
 export function AuthenticationServiceFactory(http: HttpClient, config: ConfigService): IAuthenticationService {

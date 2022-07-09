@@ -715,12 +715,12 @@ public class DesignsResource implements IDesignsResource {
             final User currentUser = this.security.getCurrentUser();
             String userLogin = currentUser.getLogin();
             Invitation invite = this.storage.getCollaborationInvite(designId, inviteId);
-            if (this.authorizationService.hasPersonalWritePermission(currentUser, designId)) {
-                throw new NotFoundException();
-            }
+//            if (this.authorizationService.hasPersonalWritePermission(currentUser, designId)) {
+//                throw new NotFoundException();
+//            }
             boolean accepted = this.storage.updateCollaborationInviteStatus(inviteId, "pending", "accepted", userLogin);
             if (!accepted) {
-                throw new NotFoundException();
+                throw new NotFoundException("Invalid invitation link");
             }
             this.storage.createPermission(designId, userLogin, invite.getRole());
         } catch (StorageException e) {

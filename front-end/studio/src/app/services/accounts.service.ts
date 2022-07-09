@@ -34,7 +34,7 @@ import {Injectable} from "@angular/core";
 
 
 /**
- * An implementation of the Linked Accounts service that uses the DAC Innovation  Hub back-end (Hub API) service
+ * An implementation of the Linked Accounts service that uses the DAC API Studio back-end (Hub API) service
  * to store and retrieve relevant information for the user.
  */
 @Injectable()

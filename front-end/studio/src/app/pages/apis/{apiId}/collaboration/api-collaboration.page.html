@@ -1,5 +1,6 @@
 <div id="api-breadcrumb-bar">
     <breadcrumbs>
+        <li breadcrumb label="Dashboard" [route]="[ '/dashboard' ]"></li>
         <li breadcrumb label="APIs" [route]="[ '/apis' ]"></li>
         <li breadcrumb [label]="api.name" [route]="[ '/apis', api.id ]"></li>
         <li breadcrumb label="Collaboration" class="active"></li>
@@ -41,9 +42,9 @@
                                     <p>
                                         To send new invitations, click the Invite button.
                                     </p>
-                                    <div class="actions">
+                                    <!-- <div class="actions">
                                         <button class="btn btn-lg btn-primary" (click)="createInvitation()">Invite a Collaborator</button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -88,9 +89,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="actions" *ngIf="isOwner()">
+                                <!-- <div class="actions" *ngIf="isOwner()">
                                     <button class="btn btn-lg btn-primary" (click)="createInvitation()">Invite a Collaborator</button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

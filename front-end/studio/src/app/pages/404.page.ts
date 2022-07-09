@@ -43,7 +43,7 @@ export class NotFoundPageComponent extends AbstractPageComponent {
      * 
      */
     protected pageTitle(): string {
-        return "DAC Innovation  Hub - Not Found";
+        return "DAC API Studio - Not Found";
     }
 
     /**

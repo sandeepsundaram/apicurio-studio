@@ -61,7 +61,7 @@ export class TemplatesPageComponent extends AbstractPageComponent {
      * The page title.
      */
     protected pageTitle(): string {
-        return "DAC Innovation  Hub - Templates";
+        return "DAC API Studio - Templates";
     }
 
     /**

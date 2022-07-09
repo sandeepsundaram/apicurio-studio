@@ -1,5 +1,6 @@
 <div id="api-breadcrumb-bar">
     <breadcrumbs>
+        <li breadcrumb label="Dashboard" [route]="[ '/dashboard' ]"></li>
         <li breadcrumb label="APIs" [route]="[ '/apis' ]"></li>
         <li breadcrumb [label]="apiDefinition.name" [route]="[ '/apis', apiDefinition.id ]"></li>
         <li breadcrumb label="Editor" class="active"></li>

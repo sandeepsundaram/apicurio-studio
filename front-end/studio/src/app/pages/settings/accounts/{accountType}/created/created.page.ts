@@ -54,7 +54,7 @@ export class CreatedLinkedAccountPageComponent extends AbstractPageComponent {
      * 
      */
     protected pageTitle(): string {
-        return "DAC Innovation  Hub - Account Linking";
+        return "DAC API Studio - Account Linking";
     }
 
     /**

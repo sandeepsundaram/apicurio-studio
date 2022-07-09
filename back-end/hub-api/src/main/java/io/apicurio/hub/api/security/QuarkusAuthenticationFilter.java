@@ -17,19 +17,22 @@
 package io.apicurio.hub.api.security;
 
 
-import io.apicurio.studio.shared.beans.StudioRole;
 import io.apicurio.studio.shared.beans.User;
-import io.smallrye.jwt.auth.principal.JWTCallerPrincipal;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.impl.crypto.DefaultJwtSignatureValidator;
 
+import javax.crypto.spec.SecretKeySpec;
 import javax.inject.Inject;
+import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonString;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import java.io.StringReader;
+import java.util.Base64;
+
+import static io.jsonwebtoken.SignatureAlgorithm.HS256;
 
 /**
  * This is a simple filter that extracts authentication information from the
@@ -55,32 +58,43 @@ public class QuarkusAuthenticationFilter implements Filter {
     @Override public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-//        HttpServletRequest httpReq = (HttpServletRequest) request;
-//        JWTCallerPrincipal principal = (JWTCallerPrincipal) httpReq.getUserPrincipal();
-//
-//        if (principal != null) {
-//
-//            // Fabricate a User object from information in the access token and store it in the request.
-//            User user = new User();
-//            user.setEmail(principal.getClaim("email"));
-//            user.setLogin(principal.getClaim("preferred_username"));
-//            user.setName(principal.getClaim("name"));
-//            if (!principal.containsClaim("realm_access") || principal.<JsonObject>getClaim("realm_access").isNull("roles")) {
-//                user.setRoles(Collections.emptyList());
-//            } else {
-//                user.setRoles(
-//                        principal.<JsonObject>getClaim("realm_access")
-//                                .getJsonArray("roles").stream()
-//                                .map(JsonString.class::cast)
-//                                .map(JsonString::getString)
-//                                .map(StudioRole::forName)
-//                                .filter(Objects::nonNull)
-//                                .collect(Collectors.toUnmodifiableList()));
-//            }
-//            ((SecurityContext) security).setUser(user);
-//            ((SecurityContext) security).setToken(principal.getRawToken());
+        HttpServletRequest httpReq = (HttpServletRequest) request;
+        String authorization = httpReq.getHeader("Authorization");
+
+        if (authorization != null) {
+            String token = authorization.split(" ")[1];
+            SignatureAlgorithm sa = HS256;
+            SecretKeySpec secretKeySpec = new SecretKeySpec("secretKey".getBytes(), sa.getJcaName());
+
+            String[] chunks = token.split("\\.");
+
+            String tokenWithoutSignature = chunks[0] + "." + chunks[1];
+            String signature = chunks[2];
+
+            DefaultJwtSignatureValidator validator = new DefaultJwtSignatureValidator(sa, secretKeySpec);
+
+            if (!validator.isValid(tokenWithoutSignature, signature)) {
+                throw new ServletException("Could not verify JWT token integrity!");
+            }
+
+            Base64.Decoder decoder = Base64.getUrlDecoder();
+            String payload = new String(decoder.decode(chunks[1]));
+
+            JsonObject jObj = Json.createReader(new StringReader(payload)).readObject();
+
+            User user = new User();
+            user.setEmail(jObj.getString("email"));
+            user.setLogin(jObj.getString("login"));
+            user.setName(jObj.getString("name"));
+            user.setId(jObj.getInt("id"));
+
+            ((SecurityContext) security).setUser(user);
+            ((SecurityContext) security).setToken(token);
 
             chain.doFilter(request, response);
+        } else {
+            ((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid access");
+        }
 
     }
 

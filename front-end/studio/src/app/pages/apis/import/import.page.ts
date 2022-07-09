@@ -49,7 +49,7 @@ export class ImportApiPageComponent extends AbstractPageComponent {
      * 
      */
     protected pageTitle(): string {
-        return "DAC Innovation  Hub - Import API";
+        return "DAC API Studio - Import API";
     }
 
     /**

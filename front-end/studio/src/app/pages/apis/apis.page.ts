@@ -104,7 +104,7 @@ export class ApisPageComponent extends AbstractPageComponent implements OnDestro
      * 
      */
     protected pageTitle(): string {
-        return "DAC Innovation  Hub - API Listing";
+        return "DAC API Studio - API Listing";
     }
 
     /**

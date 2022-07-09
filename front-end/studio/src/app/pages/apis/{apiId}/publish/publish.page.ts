@@ -84,9 +84,9 @@ export class PublishPageComponent extends AbstractPageComponent {
      */
     protected pageTitle(): string {
         if (this.api.name) {
-            return "DAC Innovation  Hub - Publish API :: " + this.api.name;
+            return "DAC API Studio - Publish API :: " + this.api.name;
         } else {
-            return "DAC Innovation  Hub - Publish API";
+            return "DAC API Studio - Publish API";
         }
     }
 

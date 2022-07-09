@@ -60,9 +60,9 @@ export class CopyPageComponent extends AbstractPageComponent {
      */
     protected pageTitle(): string {
         if (this.api.name) {
-            return "DAC Innovation  Hub - Copy API :: " + this.api.name;
+            return "DAC API Studio - Copy API :: " + this.api.name;
         } else {
-            return "DAC Innovation  Hub - Copy API";
+            return "DAC API Studio - Copy API";
         }
     }
 

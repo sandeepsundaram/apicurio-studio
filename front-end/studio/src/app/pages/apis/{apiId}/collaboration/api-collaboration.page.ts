@@ -71,9 +71,9 @@ export class ApiCollaborationPageComponent extends AbstractPageComponent {
      */
     protected pageTitle(): string {
         if (this.api.name) {
-            return "DAC Innovation  Hub - API Collaborators :: " + this.api.name;
+            return "DAC API Studio - API Collaborators :: " + this.api.name;
         } else {
-            return "DAC Innovation  Hub - API Collaborators";
+            return "DAC API Studio - API Collaborators";
         }
     }
 

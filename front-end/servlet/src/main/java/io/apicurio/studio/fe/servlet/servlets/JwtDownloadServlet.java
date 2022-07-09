@@ -38,10 +38,10 @@ public class JwtDownloadServlet extends DownloadServlet {
     protected void proxyUrlTo(String url, HttpServletRequest request, HttpServletResponse response) {
         try {
 
-            JWTCallerPrincipal principal = (JWTCallerPrincipal) request.getUserPrincipal();
+            String token = request.getParameter("session");
+            System.out.println(token);
 
-
-            proxyUrlWithToken("principal.getRawToken()", url, response);
+            proxyUrlWithToken(token, url, response);
 
         } catch (IllegalStateException e) {
             logger.error("Error proxying URL: " + url, e);

@@ -110,9 +110,9 @@ export class ApiDetailPageComponent extends AbstractPageComponent {
      */
     protected pageTitle(): string {
         if (this.api.name) {
-            return "DAC Innovation  Hub - API :: " + this.api.name;
+            return "DAC API Studio - API :: " + this.api.name;
         } else {
-            return "DAC Innovation  Hub - API Details";
+            return "DAC API Studio - API Details";
         }
     }
 

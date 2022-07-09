@@ -60,9 +60,9 @@ export class MockPageComponent extends AbstractPageComponent {
      */
     protected pageTitle(): string {
         if (this.api.name) {
-            return "DAC Innovation  Hub - Mock API :: " + this.api.name;
+            return "DAC API Studio - Mock API :: " + this.api.name;
         } else {
-            return "DAC Innovation  Hub - Mock API";
+            return "DAC API Studio - Mock API";
         }
     }
 

@@ -21,6 +21,7 @@ import {ConfigService} from "./config.service";
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Topic} from "apicurio-ts-core";
 import {HttpUtils} from "../util/common";
+import { JWTService } from "./jwt.service";
 
 /**
  * A version of the authentication service that uses token information passed to it
@@ -43,19 +44,22 @@ export class TokenAuthenticationService extends IAuthenticationService {
     constructor(private http: HttpClient, private config: ConfigService) {
         super();
         this.accessToken = config.authToken();
+        const user = new JWTService().parseJwt(this.accessToken);
+
+        console.log(JSON.stringify(user));
 
         this._authenticated.send(true);
-        this._user = config.user();
+        this._user = user;
 
-        let refreshPeriod: number = config.authRefreshPeriod();
-        if (refreshPeriod) {
-            console.info("[TokenAuthenticationService] Will refresh auth token in %d seconds.", refreshPeriod)
-            setTimeout(() => {
-                this.refreshToken();
-            }, refreshPeriod * 1000);
-        } else {
-            console.info("[TokenAuthenticationService] No refresh period set. Token may expire unexpectedly!");
-        }
+        // let refreshPeriod: number = config.authRefreshPeriod();
+        // if (refreshPeriod) {
+        //     console.info("[TokenAuthenticationService] Will refresh auth token in %d seconds.", refreshPeriod)
+        //     setTimeout(() => {
+        //         this.refreshToken();
+        //     }, refreshPeriod * 1000);
+        // } else {
+        //     console.info("[TokenAuthenticationService] No refresh period set. Token may expire unexpectedly!");
+        // }
     }
 
     /**

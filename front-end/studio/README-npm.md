@@ -1,4 +1,4 @@
-# DAC Innovation  Hub Public API
+# DAC API Studio Public API
 
 ## What is it?
 This project is an application, written in Typescript, to edit OpenAPI definitions.

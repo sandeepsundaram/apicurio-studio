@@ -43,15 +43,25 @@ export class KeycloakAuthenticationService extends IAuthenticationService {
         let w: any = window;
         this.keycloak = w["keycloak"];
 
+        // console.info("Token: %s", JSON.stringify(this.keycloak.tokenParsed, null, 2));
+        // console.info("ID Token: %s", JSON.stringify(this.keycloak.idTokenParsed, null, 2));
+        // console.info("Access Token: %s", this.keycloak.token);
+
         let user: User = new User();
-        user.name = "name1"
-        user.login = "s@s.com"
-        user.email = "s@ss.com"
-        user.roles = ["admin"]
+        user.name = this.keycloak.tokenParsed.name;
+        user.login = this.keycloak.tokenParsed.preferred_username;
+        user.email = this.keycloak.tokenParsed.email;
+        user.roles = this.keycloak.tokenParsed.realm_access.roles
+            .filter(o => Object.values(ApicurioRole).includes(o));
 
         this._authenticated.send(true);
         this._user = user;
 
+        // Periodically refresh the token
+        // TODO run this outsize NgZone using zone.runOutsideAngular() : https://angular.io/api/core/NgZone
+        setInterval(() => {
+            this.keycloak.updateToken(30);
+        }, 30000);
     }
 
     /**
@@ -59,7 +69,7 @@ export class KeycloakAuthenticationService extends IAuthenticationService {
      * 
      */
     public isAuthenticated(): boolean {
-        return true
+        return this._authenticated.getValue();
     }
 
     /**
@@ -90,7 +100,7 @@ export class KeycloakAuthenticationService extends IAuthenticationService {
      * Logout.
      */
     public logout(): void {
-//         this.keycloak.logout({ redirectUri: location.href });
+        this.keycloak.logout({ redirectUri: location.href });
     }
 
     /**
@@ -107,7 +117,7 @@ export class KeycloakAuthenticationService extends IAuthenticationService {
      * 
      */
     public getAuthenticationSecret(): string {
-        return "wwww"
+        return this.keycloak.token;
     }
 
 }

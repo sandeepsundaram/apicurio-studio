@@ -44,7 +44,7 @@ export class SettingsPageComponent extends AbstractPageComponent {
      * 
      */
     protected pageTitle(): string {
-        return "DAC Innovation  Hub - Settings";
+        return "DAC API Studio - Settings";
     }
 
     /**

@@ -50,7 +50,7 @@ export class ApiAcceptPageComponent extends AbstractPageComponent {
      * 
      */
     protected pageTitle(): string {
-        return "DAC Innovation  Hub - Accept Collaboration Invite";
+        return "DAC API Studio - Accept Collaboration Invite";
     }
 
     /**

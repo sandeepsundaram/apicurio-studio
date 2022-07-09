@@ -1,8 +1,9 @@
-<!--<div id="api-breadcrumb-bar">-->
-    <!--<breadcrumbs>-->
-        <!--<li breadcrumb label="APIs" class="active"></li>-->
-    <!--</breadcrumbs>-->
-<!--</div>-->
+<div id="api-breadcrumb-bar">
+    <breadcrumbs>
+        <li breadcrumb label="Dashboard" [route]="[ '/dashboard' ]"></li>
+        <li breadcrumb label="APIs" class="active"></li>
+    </breadcrumbs>
+</div>
 <page-error [error]="pageError" *ngIf="pageError"></page-error>
 <div class="container-fluid api-list-apis" *ngIf="!pageError">
     <div class="row toolbar-pf">
@@ -112,6 +113,6 @@
     <div class="alert alert-danger">
         <span class="pficon pficon-error-circle-o"></span>
         <strong>NOTE:</strong>
-        <span>This will <strong>permanently</strong> delete the API definition from DAC Innovation  Hub.  This operation cannot be undone.</span>
+        <span>This will <strong>permanently</strong> delete the API definition from DAC API Studio.  This operation cannot be undone.</span>
     </div>
 </confirm-delete-dialog>
