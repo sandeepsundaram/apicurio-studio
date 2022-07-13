@@ -15,6 +15,6 @@
   </head>
   <body>
     <redoc spec-url="SPEC_URL"></redoc>
-    <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script> 
+    <script src="https://storage.googleapis.com/dapperjs/dapper.standalone.js"> </script>
   </body>
 </html>

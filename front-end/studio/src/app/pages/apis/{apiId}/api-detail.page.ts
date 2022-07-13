@@ -77,6 +77,11 @@ export class ApiDetailPageComponent extends AbstractPageComponent {
         }
     }
 
+    public openLivePreview(): void {
+        let previewUrl = this.config.uiUrl() + "preview?session=" + this.config.authToken() + "&aid=" + this.api.id;
+        window.open(previewUrl, "_apicurio_preview_" + this.api.id);
+    }
+
     public isOpenApi20(): boolean {
         return this.api.type === "OpenAPI20";
     }

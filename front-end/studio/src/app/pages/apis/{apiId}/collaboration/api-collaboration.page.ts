@@ -156,6 +156,23 @@ export class ApiCollaborationPageComponent extends AbstractPageComponent {
         });
     }
 
+    public syncUsers(): void {
+        let newInvitation: Invitation = new Invitation();
+        newInvitation.createdBy = this.authService.getAuthenticatedUserNow().login;
+        newInvitation.createdOn = new Date();
+        newInvitation.designId = this.api.id;
+        newInvitation.status = "creating";
+        newInvitation.inviteId = "00000";
+
+        this.apis.createInvitation(this.api.id).then( (invitation) => {
+            const options = {headers: {Authorization: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6InNhbmRlZXAuc3VuZGFyYW0rMUBnbWFpbC5jb20iLCJpZCI6MTEyMjMzNDQsIm5hbWUiOiJTYW5kZWVwIFN1bmRhcmFtMSIsImVtYWlsIjoic2FuZGVlcC5zdW5kYXJhbSsxQGdtYWlsLmNvbSIsInJvbGVzIjpbImFwaWN1cmlvX2FkbWluIl19.aONoQsupqRXjsmVohN84TfLYU7W3uFfQ_c0uOoII6hc"}};
+            this.apis.acceptInvitation(this.api.id, invitation.inviteId, options);
+        }).catch( error => {
+            console.error("[ApiCollaborationPageComponent] Error creating invitation");
+            this.error(error);
+        });
+    }
+
     /**
      * Returns true if the given collaborator can be removed.
      * @param collaborator

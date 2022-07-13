@@ -805,17 +805,16 @@ export class ApisService extends AbstractHubService {
     /**
      * @see ApisService.acceptInvitation
      */
-    public acceptInvitation(apiId: string, inviteId: string): Promise<void> {
+    public acceptInvitation(apiId: string, inviteId: string, myOptions: any={}): Promise<void> {
         console.info("[ApisService] Accepting an API invitation to collaborate for API %s", apiId);
 
         let acceptInviteUrl: string = this.endpoint("/designs/:designId/invitations/:inviteId", {
             designId: apiId,
             inviteId: inviteId
-        });
-        let options: any = this.options({});
+        });                       
 
         console.info("[ApisService] Accepting an API invitation: %s", acceptInviteUrl);
-        return this.httpPut(acceptInviteUrl, null, options);
+        return this.httpPut(acceptInviteUrl, null, myOptions);
     }
 
     /**
