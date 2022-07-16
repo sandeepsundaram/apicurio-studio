@@ -114,4 +114,13 @@
     <url-pattern>/preview</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>SandboxServlet</servlet-name>
+    <servlet-class>io.apicurio.studio.fe.servlet.servlets.SandboxServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SandboxServlet</servlet-name>
+    <url-pattern>/sandbox</url-pattern>
+  </servlet-mapping>
+
 </web-app>

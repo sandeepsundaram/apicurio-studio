@@ -61,7 +61,7 @@ public class StudioUiConfiguration extends Configuration {
      * Returns the URL of the Apicurio Hub API.
      */
     public String getHubApiUrl() {
-        return getConfigurationProperty(HUB_API_URL_ENV, HUB_API_URL_SYSPROP, null);
+        return getConfigurationProperty(HUB_API_URL_ENV, HUB_API_URL_SYSPROP, "http://localhost:8080/");
     }
 
     /**

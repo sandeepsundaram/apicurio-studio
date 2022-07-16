@@ -105,7 +105,7 @@ public abstract class DownloadServlet extends HttpServlet {
             String designId = req.getParameter("id");
             String dereference = req.getParameter("dereference");
 
-            String url = "http://localhost:8080/";
+            String url = generateHubApiUrl(req);
             if (url.endsWith("/")) {
                 url = url.substring(0, url.length() - 1);
             }

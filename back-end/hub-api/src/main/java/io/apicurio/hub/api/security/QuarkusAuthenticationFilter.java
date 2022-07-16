@@ -59,12 +59,18 @@ public class QuarkusAuthenticationFilter implements Filter {
             throws IOException, ServletException {
 
         HttpServletRequest httpReq = (HttpServletRequest) request;
-        String authorization = httpReq.getHeader("Authorization");
+        String authorizationHeader = httpReq.getHeader("Authorization");
+        String authorizationParam = httpReq.getParameter("session");
+        String token = "";
 
-        if (authorization != null) {
-            String token = authorization.split(" ")[1];
+        if (authorizationHeader != null)
+            token = authorizationHeader.split(" ")[1];
+        else if(authorizationParam != null)
+            token = authorizationParam;
+
+        if(token != null && token.length() > 0) {
             SignatureAlgorithm sa = HS256;
-            SecretKeySpec secretKeySpec = new SecretKeySpec("secretKey".getBytes(), sa.getJcaName());
+            SecretKeySpec secretKeySpec = new SecretKeySpec("zG4YS$Z2cDLy5BJ".getBytes(), sa.getJcaName());
 
             String[] chunks = token.split("\\.");
 

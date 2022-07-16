@@ -1,9 +1,8 @@
 {
-  "name": "@apicurio/studio",
+  "name": "@dac/apistudio",
   "version": "0.2.54",
   "description": "A web application to help design restful APIs.",
-  "author": "Eric Wittmann",
-  "license": "Apache-2.0",
+  "author": "DigitalAPICraft",
   "repository": {
     "type": "git",
     "url": "https://github.com/apicurio/apicurio-studio"

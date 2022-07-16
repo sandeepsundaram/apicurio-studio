@@ -77,8 +77,8 @@ export class ApiDetailPageComponent extends AbstractPageComponent {
         }
     }
 
-    public openLivePreview(): void {
-        let previewUrl = this.config.uiUrl() + "preview?session=" + this.config.authToken() + "&aid=" + this.api.id;
+    public launchSandbox(): void {
+        let previewUrl = this.config.uiUrl() + "sandbox?session=" + this.config.authToken() + "&aid=" + this.api.id;
         window.open(previewUrl, "_apicurio_preview_" + this.api.id);
     }
 

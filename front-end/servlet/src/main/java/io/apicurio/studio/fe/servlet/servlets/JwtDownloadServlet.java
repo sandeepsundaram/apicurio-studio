@@ -39,7 +39,6 @@ public class JwtDownloadServlet extends DownloadServlet {
         try {
 
             String token = request.getParameter("session");
-            System.out.println(token);
 
             proxyUrlWithToken(token, url, response);
 
