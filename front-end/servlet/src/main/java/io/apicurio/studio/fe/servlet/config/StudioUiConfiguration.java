@@ -29,6 +29,7 @@ public class StudioUiConfiguration extends Configuration {
 
     private static final String HUB_API_URL_ENV = "APICURIO_UI_HUB_API_URL";
     private static final String HUB_API_URL_SYSPROP = "apicurio-ui.hub-api.url";
+    private static final String SANDBOX_URL = "apisandbox.url";
 
     private static final String HUB_API_DISABLE_API_TRUST_ENV = "APICURIO_UI_HUB_API_DISABLE_TRUST_MANAGER";
     private static final String HUB_API_DISABLE_API_TRUST_SYSPROP = "apicurio-ui.hub-api.disable-trust-manager";
@@ -62,6 +63,10 @@ public class StudioUiConfiguration extends Configuration {
      */
     public String getHubApiUrl() {
         return getConfigurationProperty(HUB_API_URL_ENV, HUB_API_URL_SYSPROP, "http://localhost:8080/");
+    }
+
+    public String getSandboxApiUrl() {
+        return getConfigurationProperty(SANDBOX_URL, SANDBOX_URL, "http://192.168.0.171:8080/");
     }
 
     /**
@@ -119,7 +124,7 @@ public class StudioUiConfiguration extends Configuration {
      * be useful when creating certain links in the UI.
      */
     public String getUiUrl() {
-        return getConfigurationProperty(HUB_UI_URL_ENV, HUB_UI_URL_SYSPROP, null);
+        return getConfigurationProperty(HUB_UI_URL_ENV, HUB_UI_URL_SYSPROP, "https://dacstudio.ui.digitalapicraft.com/");
     }
 
     /**

@@ -18,7 +18,10 @@ package io.apicurio.studio.fe.servlet.servlets;
 
 import io.apicurio.studio.fe.servlet.config.StudioUiConfiguration;
 import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -27,6 +30,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContexts;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -112,13 +116,19 @@ public class SandboxServlet extends HttpServlet {
             httpPost.setHeader("Content-type", "application/json");
 
             try (CloseableHttpResponse apiResponse = httpClient.execute(httpPost)) {
-                InputStream stream = apiResponse.getEntity().getContent();
+
+                HttpEntity apiRespEntity = apiResponse.getEntity();
+//                String responseString = EntityUtils.toString(apiRespEntity, "UTF-8");
+//                System.out.println(url);
+//                System.out.println(responseString);
+
+                InputStream stream = apiRespEntity.getContent();
 
                 JsonReader reader = Json.createReader(stream);
 
                 JsonObject sandboxDetails = reader.readObject();
 
-                String uuid = sandboxDetails.getString("uuid");
+                String uuid = sandboxDetails.getString("uuid", null);
 
                 return uuid;
             }
@@ -139,20 +149,6 @@ public class SandboxServlet extends HttpServlet {
         }
     }
 
-    private String generateHubApiUrl(HttpServletRequest request) {
-        try {
-            String url = this.uiConfig.getHubApiUrl();
-            if (url == null) {
-                url = request.getRequestURL().toString();
-                url = new URI(url).resolve("/").toString();
-            }
-            return url;
-        } catch (URISyntaxException e) {
-            logger.error("Error generating hub API URL.", e);
-            throw new RuntimeException(e);
-        }
-    }
-
     /**
      * @see HttpServlet#doGet(HttpServletRequest, HttpServletResponse)
      */
@@ -161,10 +157,11 @@ public class SandboxServlet extends HttpServlet {
             throws ServletException, IOException {
         String apiId = req.getParameter("aid");
         String token = req.getParameter("session");
+        String app = req.getParameter("application");
         
         logger.debug("Rendering document preview for API: {}", apiId);
 
-        String url = generateHubApiUrl(req);
+        String url = this.uiConfig.getUiUrl();
         if (url.endsWith("/")) {
             url = url.substring(0, url.length() - 1);
         }
@@ -172,9 +169,9 @@ public class SandboxServlet extends HttpServlet {
         String specURL = url + "/download?type=api&format=json&dereference=true&id=" + apiId+"&session="+token;
         logger.debug("Spec URL: {}", specURL);
 
-        String uuid = createSandbox("dac", "test22", "3", specURL, "http://192.168.0.171:8080/openapi-service/upload/url");
+        String uuid = createSandbox("dac", app, "3", specURL, this.uiConfig.getSandboxApiUrl()+"openapi-service/upload/url");
 
-        String SANDBOX_URL = "http://192.168.0.171:8080/openapi-service/download-openapi?uuid="+uuid;
+        String SANDBOX_URL = this.uiConfig.getSandboxApiUrl()+ "openapi-service/download-openapi?uuid="+uuid;
         String content= TEMPLATE_REDOC.replace("SPEC_URL", SANDBOX_URL);
 
         resp.setStatus(200);

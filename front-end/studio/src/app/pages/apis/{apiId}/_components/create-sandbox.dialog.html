@@ -1,0 +1,39 @@
+<div bsModal #createSandboxModal="bs-modal" class="modal fade" id="createSandboxModal" tabindex="-1" role="dialog"
+     [config]="{ backdrop: true }"
+     aria-labelledby="downloadModalLabel" aria-hidden="true" *ngIf="isOpen()" (onHidden)="close()" >
+    <div class="modal-dialog">
+        <div class="modal-content">           
+            <div class="modal-body">
+                <div>
+                    <p>Please provide the sandbox details</p>
+                    <hr />
+                    <div class="form form-horizontal">
+                        <div class="form-items">                                                      
+                            <div class="form-group" >
+                                <label class="col-sm-2 control-label required" for="jaxrs_groupId">API</label>
+                                <div class="col-sm-10">
+                                    <input #sandboxGroupIdInput="ngModel" name="groupId" type="text" id="jaxrs_groupId" class="form-control" placeholder="org.example.api"
+                                           required pattern="[a-zA-Z][a-zA-Z0-9\.\-_]*" [(ngModel)]="api.name" #name="ngModel">
+                                    <form-error-message [inputModel]="sandboxGroupIdInput" [type]="'required'">API name is required.</form-error-message>
+                                    <form-error-message [inputModel]="sandboxGroupIdInput" [type]="'pattern'">Please enter a valid API Name</form-error-message>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label required" for="jaxrs_artifactId">Version</label>
+                                <div class="col-sm-10">
+                                    <input #sandboxGroupIdInput="ngModel" name="artifactId" type="text" id="jaxrs_artifactId" class="form-control" placeholder="my-api"
+                                           readonly [(ngModel)]="api.type" #name="ngModel">
+                                    <form-error-message [inputModel]="sandboxGroupIdInput" [type]="'required'">API Version is required.</form-error-message>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="close()">Close</button>
+                <a class="btn btn-primary" href="{{ downloadLink() }}" (click)="close()" target="_blank">Proceed</a>
+            </div>
+        </div>
+    </div>
+</div>
