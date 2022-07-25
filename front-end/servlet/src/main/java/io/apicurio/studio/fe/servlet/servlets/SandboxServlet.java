@@ -106,8 +106,6 @@ public class SandboxServlet extends HttpServlet {
             writer.close();
             String sandboxObjJSON = stringWriter.getBuffer().toString();
 
-            System.out.println((sandboxObjJSON));
-
             StringEntity entity = new StringEntity(sandboxObjJSON);
 
             HttpPost httpPost = new HttpPost(url);
@@ -131,6 +129,79 @@ public class SandboxServlet extends HttpServlet {
                 String uuid = sandboxDetails.getString("uuid", null);
 
                 return uuid;
+            }
+        } catch (IOException | IllegalStateException e) {
+            logger.error("Error proxying URL: " + url, e);
+        }
+
+        return null;
+    }
+
+    public String deploySandbox(String application, String url) {
+        try {
+
+            String sandboxObjJSON = "{\n" +
+                    "    \"applicationName\": \""+application+"\",\n" +
+                    "    \"accountName\": \"DAC\",\n" +
+                    "    \"target\": \"https://api.backend.com\",\n" +
+                    "    \"policies\": {\n" +
+                    "        \"verifyApiKey\": {\n" +
+                    "            \"enabled\": false,\n" +
+                    "            \"header\": \"apiKey\"\n" +
+                    "        },\n" +
+                    "        \"spikeArrest\": {\n" +
+                    "            \"enabled\": false\n" +
+                    "        },\n" +
+                    "        \"JSONThreatProtection\": {\n" +
+                    "            \"enabled\": false\n" +
+                    "        },\n" +
+                    "        \"CORS\": {\n" +
+                    "            \"enabled\": true\n" +
+                    "        },\n" +
+                    "        \"quota\": {\n" +
+                    "            \"enabled\": false\n" +
+                    "        },\n" +
+                    "        \"OAuthV2\": {\n" +
+                    "            \"enabled\": false\n" +
+                    "        }\n" +
+                    "    }\n" +
+                    "}";
+
+            StringEntity entity = new StringEntity(sandboxObjJSON);
+
+            HttpPost httpPost = new HttpPost(url);
+            httpPost.setEntity(entity);
+            httpPost.setHeader("Accept", "application/json");
+            httpPost.setHeader("Content-type", "application/json");
+
+            try (CloseableHttpResponse apiResponse = httpClient.execute(httpPost)) {
+
+                HttpEntity apiRespEntity = apiResponse.getEntity();
+                String responseString = EntityUtils.toString(apiRespEntity, "UTF-8");
+                System.out.println(url);
+                System.out.println(responseString);
+            }
+        } catch (IOException | IllegalStateException e) {
+            logger.error("Error proxying URL: " + url, e);
+        }
+
+        return null;
+    }
+
+    public String createSandboxData(String application, String url) {
+        try {
+
+            url = url+"?applicationName="+application+"&accountName=dac";
+            HttpPost httpPost = new HttpPost(url);
+
+            httpPost.setHeader("Accept", "application/json");
+
+            try (CloseableHttpResponse apiResponse = httpClient.execute(httpPost)) {
+
+                HttpEntity apiRespEntity = apiResponse.getEntity();
+                String responseString = EntityUtils.toString(apiRespEntity, "UTF-8");
+                System.out.println(url);
+                System.out.println(responseString);
             }
         } catch (IOException | IllegalStateException e) {
             logger.error("Error proxying URL: " + url, e);
@@ -169,9 +240,11 @@ public class SandboxServlet extends HttpServlet {
         String specURL = url + "/download?type=api&format=json&dereference=true&id=" + apiId+"&session="+token;
         logger.debug("Spec URL: {}", specURL);
 
-        String uuid = createSandbox("dac", app, "3", specURL, this.uiConfig.getSandboxApiUrl()+"openapi-service/upload/url");
+        String uuid = createSandbox("dac", app, "3", specURL, this.uiConfig.getSandboxApiUrl()+"/upload/url");
+        deploySandbox(app, this.uiConfig.getSandboxDeployUrl()+"/deployProxy");
+        createSandboxData(app, this.uiConfig.getSandboxApiUrl()+"/auto-generate");
 
-        String SANDBOX_URL = this.uiConfig.getSandboxApiUrl()+ "openapi-service/download-openapi?uuid="+uuid;
+        String SANDBOX_URL = this.uiConfig.getSandboxApiUrl()+ "/download-openapi?uuid="+uuid;
         String content= TEMPLATE_REDOC.replace("SPEC_URL", SANDBOX_URL);
 
         resp.setStatus(200);

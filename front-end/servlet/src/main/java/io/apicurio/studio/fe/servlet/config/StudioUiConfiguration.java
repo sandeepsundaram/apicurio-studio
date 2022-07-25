@@ -30,6 +30,7 @@ public class StudioUiConfiguration extends Configuration {
     private static final String HUB_API_URL_ENV = "APICURIO_UI_HUB_API_URL";
     private static final String HUB_API_URL_SYSPROP = "apicurio-ui.hub-api.url";
     private static final String SANDBOX_URL = "apisandbox.url";
+    private static final String SANDBOX_DEPLOY_URL = "apisandbox.deploy.url";
 
     private static final String HUB_API_DISABLE_API_TRUST_ENV = "APICURIO_UI_HUB_API_DISABLE_TRUST_MANAGER";
     private static final String HUB_API_DISABLE_API_TRUST_SYSPROP = "apicurio-ui.hub-api.disable-trust-manager";
@@ -66,7 +67,11 @@ public class StudioUiConfiguration extends Configuration {
     }
 
     public String getSandboxApiUrl() {
-        return getConfigurationProperty(SANDBOX_URL, SANDBOX_URL, "http://192.168.0.171:8080/");
+        return getConfigurationProperty(SANDBOX_URL, SANDBOX_URL, "https://service.sandbox.digitalapicraft.com:8443/openapi-service");
+    }
+
+    public String getSandboxDeployUrl() {
+        return getConfigurationProperty(SANDBOX_URL, SANDBOX_URL, "http://service.sandbox.digitalapicraft.com:8000");
     }
 
     /**
