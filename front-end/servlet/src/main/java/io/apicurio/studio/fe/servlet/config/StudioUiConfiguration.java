@@ -71,7 +71,7 @@ public class StudioUiConfiguration extends Configuration {
     }
 
     public String getSandboxDeployUrl() {
-        return getConfigurationProperty(SANDBOX_URL, SANDBOX_URL, "http://service.sandbox.digitalapicraft.com:8000");
+        return getConfigurationProperty(SANDBOX_DEPLOY_URL, SANDBOX_DEPLOY_URL, "http://service.sandbox.digitalapicraft.com:8000");
     }
 
     /**
