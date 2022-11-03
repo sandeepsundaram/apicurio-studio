@@ -26,11 +26,11 @@ let DEFAULT_CONFIG: any = {
     },
     apis: {
         type: "hub",
-        hubUrl: "https://dacstudio.api.digitalapicraft.com",
-        editingUrl: "wss://dacstudio.ws.digitalapicraft.com",
+        hubUrl: "http://localhost:8080",
+        editingUrl: "ws://localhost:9090",
     },
     ui: {
-        url: "https://dacstudio.ui.digitalapicraft.com/",
+        url: "http://localhost:8081/",
         channelNameValidation: "([^\\x00-\\x20\\x7f\"'%<>\\\\^`{|}]|%[0-9A-Fa-f]{2}|{[+#./;?&=,!@|]?((\\w|%[0-9A-Fa-f]{2})(\\.?(\\w|%[0-9A-Fa-f]{2}))*(:[1-9]\\d{0,3}|\\*)?)(,((\\w|%[0-9A-Fa-f]{2})(\\.?(\\w|%[0-9A-Fa-f]{2}))*(:[1-9]\\d{0,3}|\\*)?))*})*",
     },
     features: {

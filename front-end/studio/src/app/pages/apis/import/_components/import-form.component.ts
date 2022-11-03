@@ -127,7 +127,8 @@ export class ImportApiFormComponent {
 
     public importTypeOptions(): DropDownOption[] {
         return [
-            new Value("Import From URL", "from-url"),            
+            new Value("Import From URL", "from-url"),    
+            new Value("Import From Gateway", "from-gateway"),            
             new Value("Import From Clipboard", "from-text")
         ];
     }
